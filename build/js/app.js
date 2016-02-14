@@ -1,5 +1,5 @@
 // app.js
-angular.module('worklyApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'ProfileCtrl', 'ProfileService']);
+angular.module('worklyApp', ['ngRoute', 'appRoutes', 'mainCtrl', 'profileCtrl', 'profileService']);
 
 // appRoutes.js
 angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
@@ -20,7 +20,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 	$locationProvider.html5Mode(true);
 
 }]);
-angular.module('MainCtrl', []).controller('MainController', function($scope) {
+angular.module('mainCtrl', []).controller('MainCtrl', function($scope) {
 
 	$scope.tagline = 'To the moon and back!';	
 

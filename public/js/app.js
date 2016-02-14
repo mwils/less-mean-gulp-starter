@@ -1,2 +1,2 @@
 // app.js
-angular.module('worklyApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'ProfileCtrl', 'ProfileService']);
+angular.module('worklyApp', ['ngRoute', 'appRoutes', 'mainCtrl', 'profileCtrl', 'profileService']);

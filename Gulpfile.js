@@ -3,6 +3,7 @@ var concat = require('gulp-concat');
 var clean = require('gulp-clean');
 var less = require('gulp-less');
 var server = require( 'gulp-develop-server' );
+var livereload = require('gulp-livereload');
  
 // run server 
 gulp.task( 'server:start', function() {
@@ -60,7 +61,9 @@ gulp.task('less', ['cleanLess'], function () {
     .pipe(gulp.dest('build/css/'));
 });
 
-gulp.task('build', ['app', 'vendor', 'html']);
+gulp.task('build', ['app', 'vendor', 'less', 'html'], function () {
+  livereload();
+});
 
 gulp.task('run', ['build', 'server:run'], function () {
   gulp.watch('public/js/**/*.js', ['app']);

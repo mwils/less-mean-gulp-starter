@@ -1,5 +1,6 @@
 // app.js
-angular.module('sampleApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'NerdCtrl', 'NerdService', 'GeekCtrl', 'GeekService']);
+angular.module('worklyApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'ProfileCtrl', 'ProfileService']);
+
 // appRoutes.js
 angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
@@ -8,44 +9,29 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		// home page
 		.when('/', {
 			templateUrl: 'views/home.html',
-			controller: 'MainController'
+			controller: 'MainCtrl'
 		})
 
-		.when('/nerds', {
-			templateUrl: 'views/nerd.html',
-			controller: 'NerdController'
-		})
-
-		.when('/geeks', {
-			templateUrl: 'views/geek.html',
-			controller: 'GeekController'	
+		.when('/profile/:id', {
+			templateUrl: 'views/profile.html',
+			controller: 'ProfileCtrl'
 		});
 
 	$locationProvider.html5Mode(true);
 
 }]);
-angular.module('GeekCtrl', []).controller('GeekController', function($scope) {
-
-	$scope.tagline = 'The square root of life is pi!';	
-
-});
 angular.module('MainCtrl', []).controller('MainController', function($scope) {
 
 	$scope.tagline = 'To the moon and back!';	
 
 });
-angular.module('NerdCtrl', []).controller('NerdController', function($scope) {
+angular.module('profileCtrl', [])
+.controller('ProfileCtrl', function($scope) {
 
-	$scope.tagline = 'Nothing beats a pocket protector!';
+	$scope.tagline = 'The square root of life is pi!';	
 
 });
-angular.module('GeekService', []).factory('Geek', ['$http', function($http) {
-
-	
-
-}]);
-angular.module('NerdService', []).factory('Nerd', ['$http', function($http) {
-
-	
+// ProfileService.js
+angular.module('profileService', []).factory('Profile', ['$http', function($http) {
 
 }]);

@@ -6,17 +6,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		// home page
 		.when('/', {
 			templateUrl: 'views/home.html',
-			controller: 'MainController'
+			controller: 'MainCtrl'
 		})
 
-		.when('/nerds', {
-			templateUrl: 'views/nerd.html',
-			controller: 'NerdController'
-		})
-
-		.when('/geeks', {
-			templateUrl: 'views/geek.html',
-			controller: 'GeekController'	
+		.when('/profile/:id', {
+			templateUrl: 'views/profile.html',
+			controller: 'ProfileCtrl'
 		});
 
 	$locationProvider.html5Mode(true);

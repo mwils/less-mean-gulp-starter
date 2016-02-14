@@ -2,6 +2,19 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var clean = require('gulp-clean');
 var less = require('gulp-less');
+var server = require( 'gulp-develop-server' );
+ 
+// run server 
+gulp.task( 'server:start', function() {
+    server.listen( { path: 'server.js' } );
+});
+ 
+// restart server if app.js changed 
+gulp.task( 'server:restart', function() {
+    gulp.watch( [ 'server/**/*.js' ], server.restart );
+});
+
+gulp.task('server:run', ['server:start', 'server:restart']);
 
 var paths = {
   vendors: ['bower_components/angular/angular.js', 'bower_components/angular-route/angular-route.js'],
@@ -49,4 +62,9 @@ gulp.task('less', ['cleanLess'], function () {
 
 gulp.task('build', ['app', 'vendor', 'html']);
 
-// gulp.watch('')
+gulp.task('run', ['build', 'server:run'], function () {
+  gulp.watch('public/js/**/*.js', ['app']);
+  gulp.watch('public/less/**/*.less', ['less']);
+  gulp.watch('public/views/**/*', ['html']);
+});
+

@@ -4,7 +4,8 @@ var clean = require('gulp-clean');
 var less = require('gulp-less');
 
 var paths = {
-  app: ['bower_components/angular/angular.js', 'bower_components/angular-route/angular-route.js', 'public/js/**/*.js'],
+  vendors: ['bower_components/angular/angular.js', 'bower_components/angular-route/angular-route.js'],
+  app: ['public/js/**/*.js'],
   views: 'public/views/**/*'
 };
 
@@ -23,10 +24,16 @@ gulp.task('cleanLess', function () {
     .pipe(clean());
 });
 
-gulp.task('js', ['cleanJs'], function () {
+gulp.task('app', ['cleanJs'], function () {
   return gulp.src(paths.app)
     .pipe(concat('app.js'))
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('build/js'));
+});
+
+gulp.task('vendor', ['cleanJs'], function () {
+  return gulp.src(paths.vendors)
+    .pipe(concat('vendors.js'))
+    .pipe(gulp.dest('build/js'));
 });
 
 gulp.task('html', ['cleanHtml'], function () {
@@ -40,4 +47,6 @@ gulp.task('less', ['cleanLess'], function () {
     .pipe(gulp.dest('build/css/'));
 });
 
-gulp.task('build', ['js', 'html'])
+gulp.task('build', ['app', 'vendor', 'html']);
+
+// gulp.watch('')

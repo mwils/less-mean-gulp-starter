@@ -61,13 +61,18 @@ gulp.task('less', ['cleanLess'], function () {
     .pipe(gulp.dest('build/css/'));
 });
 
+gulp.task('reload', [], function () {
+  console.log("Sending reload signal to Chrome");
+  livereload.reload();
+})
+
 gulp.task('build', ['app', 'vendor', 'less', 'html'], function () {
-  livereload();
 });
 
 gulp.task('run', ['build', 'server:run'], function () {
-  gulp.watch('public/js/**/*.js', ['app']);
-  gulp.watch('public/less/**/*.less', ['less']);
-  gulp.watch('public/views/**/*', ['html']);
+  livereload.listen();
+  gulp.watch('public/js/**/*.js', ['app', 'vendor', 'reload']);
+  gulp.watch('public/less/**/*.less', ['less', 'reload']);
+  gulp.watch('public/views/**/*', ['html', 'reload']);
 });
 

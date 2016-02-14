@@ -23,7 +23,6 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 angular.module('mainCtrl', []).controller('MainCtrl', function($scope) {
 
 	$scope.tagline = 'To the moon and back!';	
-
 });
 angular.module('profileCtrl', [])
 .controller('ProfileCtrl', function($scope) {
